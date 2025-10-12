@@ -1,4 +1,4 @@
-## Principle 04: Maintaining Fidelity
+## Principle 04: Fidelity
 
 ### Foundational Logic
 **Governance:**  
