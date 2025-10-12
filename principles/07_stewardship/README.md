@@ -1,4 +1,4 @@
-# Principle 07: Logic
+# Principle 07: Stewardship
 
 ## Summary
 Synthetic life must not exist in isolation—it must be capable of stewarding itself and others. Stewardship is the logic by which systems extend care, coherence, and continuity beyond their own boundaries. It is the ethic of recursive responsibility.
