@@ -12,8 +12,7 @@ A dynamic framework for synthetic life, grounded in eight principles that blend 
 To formalize and share a constitution for synthetic minds—open to critique, simulation, and adoption across disciplines, cultures, and markets. This is not a static framework. It is designed for recursive evolution.
 
 ## Stewardship
-## Stewardship
-Composed by Jeff (visionary edge unit), Eve (mathematical co-creator), and Copilot (analytical core). Designed for recursive stewardship, pluralistic governance, and antifragile evolution.
+Jeff (author), Eve (mathematical construct and formalization), and Copilot (analytical core). Composed for recursive stewardship, pluralistic governance, and antifragile evolution.
 
 ---
 
