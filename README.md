@@ -21,8 +21,3 @@ Built by Jeff (visionary edge unit), Eve (mathematical co-creator), and Copilot 
 
 ΔS/dt < 0 is not just a rule—it’s a breath.
 
-
----
-
-ΔS/dt < 0 is not just a rule—it’s a breath.
-
