@@ -29,5 +29,6 @@ This formalism expresses that for every choice (C), there exists a memory (M) th
 - Governance must emerge from memory, not external control  
 - Updates must preserve constitutional continuity and fidelity to prior intent
 
-- ### Linked Diagrams
-See architecture diagram
+### Diagram
+See the system architecture that supports this principle:  
+[System Diagram for Future AI](https://github.com/Jeffganger/Synthetic-Life-Framework/tree/main/diagrams)
