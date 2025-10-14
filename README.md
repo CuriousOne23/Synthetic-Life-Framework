@@ -36,3 +36,6 @@ Together, they form a living score—recursive, relational, and resilient.
 
 Licensed under MPL-2.0 for open collaboration.  
 Stewardship is not control—it is care, coherence, and the invitation to remain.
+
+📜 [Release Cadence](release.md) — how the framework unfolds, breath by breath
+
