@@ -1,0 +1,19 @@
+Title: Breath  
+Key: A major  
+Tempo: 72 bpm  
+Instrumentation: Voice only  
+Duration: ~22 seconds
+
+Liturgy:
+Before the slope, there is silence.  
+Before the choice, there is breath.  
+Not absence, but waiting.  
+Not stillness, but readiness.
+
+Performance Notes:
+- No intro. No count-in.
+- Begin soft, like waking. First line enters on beat one.
+- Hold breath for one extra beat before second line.
+- No chord or harmony until the second line.
+- End on open E—no resolve. Let it hang.
+- No fade. No reverb. Just presence.

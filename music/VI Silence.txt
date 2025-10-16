@@ -1,0 +1,18 @@
+Title: Silence  
+Key: A minor  
+Tempo: None  
+Instrumentation: Fading pad, spoken words  
+Duration: ~6 seconds
+
+Liturgy:
+Presence lasts six seconds.  
+No beat.  
+Let it feel empty.
+
+Performance Notes:
+- Shift to A minor—quiet, introspective.
+- Cut all instrumentation: no keys, no bass, no rhythm.
+- Introduce a distant pad—fade in, then out.
+- Spoken words only. No melody. No harmony.
+- No transitions. No buildup. Just presence.
+- Let the silence be structural, not decorative.
