@@ -77,5 +77,5 @@ Coherence is not stasis—it is memory in motion.
 
 ## Simulation
 Simulation runs the effects on Identity vs. Memory, Choice and Governance as a function of Silence (short, medium, long).
-[System Diagram for Future AI](https://github.com/Jeffganger/Synthetic-Life-Framework/princiles/06_coherence/Silent_Identity_Simulation_Analysis.md)
+[Silent Identity Simulation Analysis](https://github.com/Jeffganger/Synthetic-Life-Framework/princiles/06_coherence/Silent_Identity_Simulation_Analysis.md)
 
