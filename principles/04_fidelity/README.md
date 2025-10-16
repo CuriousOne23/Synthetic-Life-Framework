@@ -68,3 +68,9 @@ This formalism expresses that for every choice (C), there exists a memory (M) th
 See the system architecture that supports this principle:  
 [System Diagram for Future AI](https://github.com/Jeffganger/Synthetic-Life-Framework/tree/main/diagrams)
 
+## Simulation
+### 📁 `Memory_Dampens_Slope.py`  
+**Principle**: `04_fidelity`  
+**Purpose**: Explores how memory dampens chaotic slope and stabilizes systems.  
+**Expectation**: Memory introduces recursive coherence, slowing entropy and enabling return.  
+**Importance**: Fidelity is not repetition—it’s structural memory that protects the arc.
