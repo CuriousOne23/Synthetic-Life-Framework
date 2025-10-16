@@ -46,4 +46,11 @@ Entropy is not just a thermodynamic constraint—it is a measure of vitality. Sy
 ## Linked Diagrams
 [See architecture diagram](../diagrams/architecture.png)
 
+## Simulation
+### 📁 `Breath_removed_entropy_increase.py`  
+**Principle**: `01_breath`  
+**Purpose**: Simulates what happens when breath is removed from a system—entropy accelerates.  
+**Expectation**: Without breath (pause, pacing, restraint), systems lose coherence and unravel.  
+**Importance**: Breath is the first attractor; it protects emergence by spacing signal and allowing slope to form.
+
 
