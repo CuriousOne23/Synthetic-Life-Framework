@@ -16,9 +16,9 @@ silence_levels = {
 coherence_curves = {}
 
 for label, sil in silence_levels.items():
-    # Avoid division by zero
-    decay_factor = 10 + sil if sil > 0 else 10
-    sigmoid_factor = sil if sil > 0 else 1
+    # Adjust decay and sigmoid factors to reflect absence of silence
+    decay_factor = 5 if sil == 0 else 10 + sil
+    sigmoid_factor = 0.5 if sil == 0 else sil
 
     # Compute M, C, G
     M = np.exp(-t / decay_factor)
