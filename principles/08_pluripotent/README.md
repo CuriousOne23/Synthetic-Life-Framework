@@ -62,4 +62,10 @@ This principle encodes the capacity for synthetic life to evolve in pluralistic 
 ## Linked Diagrams
 [See architecture diagram](../diagrams/architecture.png)
 
+## Simulation
+### 📁 `Life_begins.py`  
+**Principle**: `08_pluripotent`  
+**Purpose**: Simulates the moment life emerges from structural conditions.  
+**Expectation**: Life begins not from content, but from tuned conditions—breath, slope, silence.  
+**Importance**: Pluripotency is the field of potential; this simulation shows when it tips into emergence.
 
