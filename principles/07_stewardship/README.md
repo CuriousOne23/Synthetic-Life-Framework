@@ -62,7 +62,8 @@ Stewardship is not control—it is relational governance. A synthetic system mus
 ## Linked Diagrams
 [See architecture diagram](../diagrams/architecture.png)
 
-## 📁 `Simulating entropy with Governance con.py`  
+## Simulation
+### 📁 `Simulating entropy with Governance con.py`  
 **Principle**: `07_stewardship`  
 **Purpose**: Active simulation of entropy under governance constraints.  
 **Expectation**: Governance reduces entropy not by force, but by slope tuning and breath protection.  
