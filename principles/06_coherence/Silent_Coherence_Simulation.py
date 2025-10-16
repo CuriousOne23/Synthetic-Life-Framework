@@ -29,4 +29,13 @@ for label, sil in silence_levels.items():
 # Plotting
 plt.figure(figsize=(10, 6))
 for label, I in identity_curves.items():
-    plt.plot(t, I, label
+    plt.plot(t, I, label=label)
+
+plt.title("Effect of Silence Duration on Identity Over Time")
+plt.xlabel("Time (Events)")
+plt.ylabel("Identity (I)")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.savefig("Silent_Identity_Curves.png")
+plt.show()
