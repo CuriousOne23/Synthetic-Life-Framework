@@ -28,7 +28,7 @@ def identity_response(P, M, C, G):
         I[i] = I[i-1] + damping * (P[i] - I[i-1])
     return I
 
-# Return fidelity metric — coherence over time
+# Return fidelity metric
 epsilon = 1e-6
 def return_fidelity(I, P, window=10):
     coherence = np.zeros_like(I)
@@ -40,14 +40,37 @@ def return_fidelity(I, P, window=10):
 
 # Segment coherence by governance pulses
 def segment_coherence(I, P, pulse_starts, pulse_width):
-    segment_scores = []
+    scores = []
     for start in pulse_starts:
         end = min(start + pulse_width, len(I))
         delta_I = np.abs(I[end-1] - I[start])
         delta_P = np.abs(P[end-1] - P[start])
         score = 1 - delta_I / (delta_P + epsilon)
-        segment_scores.append(score)
-    return np.clip(segment_scores, 0, 1)
+        scores.append(score)
+    return np.clip(scores, 0, 1)
+
+# Slope fidelity per pulse
+def segmented_slope_fidelity(I, P, pulse_starts, pulse_width):
+    scores = []
+    for start in pulse_starts:
+        end = min(start + pulse_width, len(I))
+        dI = np.gradient(I[start:end])
+        dP = np.gradient(P[start:end])
+        fidelity = 1 - np.mean(np.abs(dI - dP)) / (np.mean(np.abs(dP)) + epsilon)
+        scores.append(fidelity)
+    return np.clip(scores, 0, 1)
+
+# Memory fidelity across pulses
+def memory_fidelity(I, pulse_starts, pulse_width):
+    scores = []
+    for i in range(1, len(pulse_starts)):
+        prev = pulse_starts[i-1]
+        curr = pulse_starts[i]
+        dI_prev = np.gradient(I[prev:prev+pulse_width])
+        dI_curr = np.gradient(I[curr:curr+pulse_width])
+        score = 1 - np.mean(np.abs(dI_curr - dI_prev)) / (np.mean(np.abs(dI_prev)) + epsilon)
+        scores.append(score)
+    return np.clip(scores, 0, 1)
 
 # Inputs
 P = escalating_sinusoid(t)
@@ -75,24 +98,21 @@ dP = np.gradient(P)
 slope_diff_decay = np.abs(dI_decay - dP)
 slope_diff_periodic = np.abs(dI_periodic - dP)
 
-# ΔI / ΔP ratio
-delta_I_decay = np.abs(np.gradient(I_decay))
-delta_I_periodic = np.abs(np.gradient(I_periodic))
-delta_P = np.abs(np.gradient(P))
-ratio_decay = delta_I_decay / (delta_P + epsilon)
-ratio_periodic = delta_I_periodic / (delta_P + epsilon)
-
-# Segment coherence
+# Pulse intervals
 pulse_starts = list(range(0, len(t), 20))
-segment_scores = segment_coherence(I_periodic, P, pulse_starts, pulse_width=10)
 
-# Plot all panels
+# Segment metrics
+segment_scores = segment_coherence(I_periodic, P, pulse_starts, pulse_width=10)
+slope_scores = segmented_slope_fidelity(I_periodic, P, pulse_starts, pulse_width=10)
+memory_scores = memory_fidelity(I_periodic, pulse_starts, pulse_width=10)
+
+# Plot panels
 fig, axs = plt.subplots(6, 1, figsize=(14, 18), sharex=True)
 
-# Identity response
+# Identity
 axs[0].plot(t, P, 'k--', linewidth=2, label='Escalating Perturbation')
-axs[0].plot(t, I_decay, 'b', label='I_decay (no intervention)')
-axs[0].plot(t, I_periodic, 'g', label='I_periodic (stewardship)')
+axs[0].plot(t, I_decay, 'b', label='I_decay')
+axs[0].plot(t, I_periodic, 'g', label='I_periodic')
 axs[0].set_ylabel("Identity")
 axs[0].set_title("Identity Response")
 axs[0].legend()
@@ -106,7 +126,7 @@ axs[1].set_title("Governance Profiles")
 axs[1].legend()
 axs[1].grid(True)
 
-# Coherence with pulse annotations
+# Coherence
 axs[2].plot(t, coherence_decay, 'b', label='Coherence (decay)')
 axs[2].plot(t, coherence_periodic, 'g', label='Coherence (periodic)')
 for start in pulse_starts:
@@ -116,35 +136,41 @@ axs[2].set_title("Return Fidelity with Pulse Intervals")
 axs[2].legend()
 axs[2].grid(True)
 
-# ΔI / ΔP ratio
-axs[3].plot(t, ratio_decay, 'b', label='ΔI/ΔP (decay)')
-axs[3].plot(t, ratio_periodic, 'g', label='ΔI/ΔP (periodic)')
-axs[3].set_ylabel("ΔI / ΔP")
-axs[3].set_title("Modulation Ratio: Identity vs Perturbation")
+# Damping
+axs[3].plot(t, D_decay, 'b', label='Damping (decay)')
+axs[3].plot(t, D_periodic, 'g', label='Damping (periodic)')
+axs[3].set_ylabel("Damping")
+axs[3].set_title("Effective Damping Over Time")
 axs[3].legend()
 axs[3].grid(True)
 
-# Damping
-axs[4].plot(t, D_decay, 'b', label='Damping (decay)')
-axs[4].plot(t, D_periodic, 'g', label='Damping (periodic)')
-axs[4].set_ylabel("Damping")
-axs[4].set_title("Effective Damping Over Time")
+# Slope Δ
+axs[4].plot(t, slope_diff_decay, 'b', label='Slope Δ (decay)')
+axs[4].plot(t, slope_diff_periodic, 'g', label='Slope Δ (periodic)')
+axs[4].set_ylabel("Slope Δ")
+axs[4].set_title("Slope Difference: Identity vs Perturbation")
 axs[4].legend()
 axs[4].grid(True)
 
-# Slope difference
-axs[5].plot(t, slope_diff_decay, 'b', label='Slope Δ (decay)')
-axs[5].plot(t, slope_diff_periodic, 'g', label='Slope Δ (periodic)')
-axs[5].set_ylabel("Slope Δ")
-axs[5].set_xlabel("Time")
-axs[5].set_title("Slope Difference: Identity vs Perturbation")
-axs[5].legend()
+# Memory Fidelity (bar plot)
+axs[5].bar(range(1, len(memory_scores)+1), memory_scores, color='purple')
+axs[5].set_ylabel("Memory Fidelity")
+axs[5].set_xlabel("Pulse Index")
+axs[5].set_title("Memory Fidelity Across Pulses")
 axs[5].grid(True)
 
 plt.tight_layout()
 plt.show()
 
-# Print segmented coherence scores
-print("Segmented Coherence Scores (Periodic):")
+# Print segmented metrics
+print("Segmented Coherence Scores:")
 for i, score in enumerate(segment_scores):
     print(f"Pulse {i+1}: {score:.3f}")
+
+print("\nSegmented Slope Fidelity Scores:")
+for i, score in enumerate(slope_scores):
+    print(f"Pulse {i+1}: {score:.3f}")
+
+print("\nMemory Fidelity Scores:")
+for i, score in enumerate(memory_scores):
+    print(f"Between Pulse {i} and {i+1}: {score:.3f}")
