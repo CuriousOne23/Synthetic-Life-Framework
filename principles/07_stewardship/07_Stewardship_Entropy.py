@@ -41,28 +41,28 @@ for i in range(1, steps):
     slope_u.append(new_slope)
     entropy_u.append(new_ent)
 
-# One-score metric: mean final stretch efficacy
-efficacy = np.mean(entropy_g[-20:]) - np.mean(entropy_u[-20:])
+# One-score metric: mean final stretch efficacy (using negative entropy for consistency)
+efficacy = np.mean([-e for e in entropy_g[-20:]]) - np.mean([-e for e in entropy_u[-20:]])
 print(f"Stewardship efficacy score: {efficacy:.3f}")
 
-# Calculate delta
-delta_entropy = [u - g for u, g in zip(entropy_u, entropy_g)]
+# Calculate delta (No - With stewardship for negative entropy)
+delta_entropy = [g -u for g, u in zip(entropy_g, entropy_u)]  # Reflects -(g - u) for negative entropy delta
 
 # Plot with four subplots
 fig, (ax1, ax2, ax3, ax4) = plt.subplots(4, 1, figsize=(10, 14), sharex=True)
 
-# Entropy plot
+# Positive entropy plot
 ax1.plot(entropy_g, label='With stewardship', linewidth=2.5, color='green')
 ax1.plot(entropy_u, label='No stewardship', linewidth=2, color='red', alpha=0.8)
 ax1.axhline(2.0, color='k', linestyle='--', alpha=0.5)
-ax1.set_ylabel('Entropy level')
+ax1.set_ylabel('Entropy')
 ax1.set_title('Stewardship keeps entropy low - efficacy score above')
 ax1.legend()
 ax1.grid(True)
 
-# Delta plot
-ax2.plot(delta_entropy, label='Delta (No - With stewardship)', linewidth=1.5, color='orange')
-ax2.set_ylabel('Entropy Delta')
+# Delta plot (negative entropy context)
+ax2.plot(delta_entropy, label='Delta (With - No stewardship)', linewidth=1.5, color='orange')
+ax2.set_ylabel('Entropy')
 ax2.legend()
 ax2.grid(True)
 
