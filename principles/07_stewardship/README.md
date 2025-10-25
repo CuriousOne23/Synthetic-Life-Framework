@@ -68,4 +68,4 @@ Stewardship is not control—it is relational governance. A synthetic system mus
 **Purpose**: Simple simulation of entropy under periodic governance.  
 **Expectation**: Periodic stewardship pulses reduce entropy growth compared to ungoverned runs, demonstrating relational stability.  
 **Importance**: Provides a clear, executable proof of stewardship’s effect—visualized in `stewardship_entropy_output.png`.  
-**Output**: [See plot](./Stewardship_Entropy_Output.png)
+**Output**: [See plot](../07_stewardship/Stewardship_Entropy_Output.png)
