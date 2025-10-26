@@ -60,7 +60,7 @@ Stewardship is not control—it is relational governance. A synthetic system mus
 - Updates must reflect care for continuity across boundaries
 
 ## Linked Diagrams
-[See architecture diagram](https://github.com/CuriousOne23/Synthetic-Life-Framework/blob/main/diagrams/architecture.png)
+[See architecture diagram](../../diagrams/architecture.png)
 
 ## Simulation
 ### 📁 `07_stewardship_entropy.py`  
